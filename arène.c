@@ -13,12 +13,12 @@ void affichage(){
 
     //Barre du haut du tableau (limite du tableau)
     printf("                    ");
-    for (i = 0; i < (size*2) +3; i++)printf("X"); //barre latéral du coté droit
+    for (i = 0; i < (size*2) +3; i++)printf("X"); //barre latÃ©ral du cotÃ© droit
     printf("\n");
 
     //tableau
     for (i=0;i < size;i++){
-        printf("                    X "); //barre latéral du coté gauche (centré tableau)
+        printf("                    X "); //barre latÃ©ral du cotÃ© gauche (centrÃ© tableau)
         for (j=0;j<size;j++){
             if(map[i][j] == 0){ // if map i j = variable
                 printf(". ");
@@ -36,7 +36,7 @@ void affichage(){
     printf("\n");
 }
 
-void initialisation_map (){  //toute la map est initialisé a 0
+void initialisation_map (){  //toute la map est initialisÃ© a 0
     int i, j;
     for (i=0;i<size;i++){
         for(j=0;j<size;j++){
@@ -55,15 +55,15 @@ void limit_du_tableau (){   //ne fonctionne pas
 }
 
 int deplacement (int depx, int depy , int ID){
-    if (ID > 1000){ // vérif ID du joueur supérieur à 1000
-        if (depx <= 3 && depy <= 5){   //limite de déplacement du joueur
+    if (ID > 1000){ // vÃ©rif ID du joueur supÃ©rieur Ã  1000
+        if (depx <= 3 && depy <= 5){   //limite de dÃ©placement du joueur
 
             //Cherche le joueur
             int i, j, x, y,isFind;
             for (i=0;i<size;i++){           // parcours de tableau pour chercher la case ou est l'ID du joueur
                 for(j=0;j<size;j++){
                     if (map [i][j] == ID){  // si la case contient ID
-                        x = i;              // on stock les coordonnées en x et y
+                        x = i;              // on stock les coordonnÃ©es en x et y
                         y = j;
                         isFind = 1;         // arret de la boucle
                         break;
@@ -74,7 +74,7 @@ int deplacement (int depx, int depy , int ID){
                 }
             }
 
-            if((x+depx < size) && (x+depx >= 0) && (y+depy < size) && (y+depy >= 0)){ // On verifie si les coordonnée sont dans le tableau
+            if((x+depx < size) && (x+depx >= 0) && (y+depy < size) && (y+depy >= 0)){ // On verifie si les coordonnÃ©e sont dans le tableau
                 //On le reinitialise
                 map[x][y] = 0;
                 //On le bouge de son deplacement
@@ -85,10 +85,7 @@ int deplacement (int depx, int depy , int ID){
             }
         }
     }
-    //if (depx + x > size-1 || depy + y > size-1){
-            //l'IA ne peux pas bouger ici : il doit modifier son déplacement
-        //depx = depx - 2;         // valeur donnée au hasard  // ca ne fonctionne pas
-    //}
+    
 
 
 }
@@ -104,24 +101,24 @@ int NombreDeJoueurs (){
 int condition_initiales_ia (int NombreIA){
     int ID_ia,i;
 
-    for(i=1 ; i<=NombreIA ; i++){  //numéro des ia
+    for(i=1 ; i<=NombreIA ; i++){  //numÃ©ro des ia
         ID_ia = 1000 + i;
         //appel des fonctions des IA
         int reussi = 1;
         while(reussi == 1){ //si tant que = 1 ==> appel de la fonction
-            reussi = placement_IA (NombreIA,ID_ia); // si la fonction rate (case déjà occupé) while = 1 donc la fonction recommence
+            reussi = placement_IA (NombreIA,ID_ia); // si la fonction rate (case dÃ©jÃ  occupÃ©) while = 1 donc la fonction recommence
         }
     }
 }
 
 int placement_IA (int NombreIA , int ID_ia){
     int i, j;
-    int x = rand()%size;  //case aléatoire sur la map
-    int y = rand()%size;  //case aléatoire sur la map
+    int x = rand()%size;  //case alÃ©atoire sur la map
+    int y = rand()%size;  //case alÃ©atoire sur la map
 
     for (i = 0 ; i < 3 ; i++){
         for (j=0 ; j < 3 ; j++){
-            if (map[x+i][y+j] >= 1000 || x+1 >= size || y+1 >= size){  //test si la case est déja occupé et //si la position de la case correspond au limites du tableau
+            if (map[x+i][y+j] >= 1000 || x+1 >= size || y+1 >= size){  //test si la case est dÃ©ja occupÃ© et //si la position de la case correspond au limites du tableau
                 return 1;
             }
         }
@@ -156,17 +153,14 @@ int main()
         // condition initiale du remplissage
 
 
-        /*map[5][pos] = 0; //on remet la case ou était l'ia à 0
-        pos++;
-        map[5][pos] = 1;
-        */
+        
 
 
         //Affichage
         affichage();
 
-        //A NE OAS OUBLIER
-        if((time(NULL)-tpsDepart >= 2)/* || (win)*/){ //arret de la partie au bout de 4 minutes ou une victoire CHANGER LE TPS UNE FOIS FINI
+        
+        if((time(NULL)-tpsDepart >= 4200)){ //arret de la partie au bout de 4 minutes ou une victoire 
             isplayed = 0; //arret du jeu
         }
     }
